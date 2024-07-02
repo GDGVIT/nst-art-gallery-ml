@@ -79,7 +79,7 @@ app.post('/combine-styles', upload.fields([
     res.status(500).send('Error processing combined style transfer');
   }
 });
-
+// TODO: Add some auth to this one, check from env or something
 app.post('/cleanup', async (req, res) => {
   try {
     await cleanupFiles();

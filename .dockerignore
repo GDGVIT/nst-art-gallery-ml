@@ -1,0 +1,7 @@
+# .dockerignore file
+node_modules
+npm-debug.log
+uploads
+outputs
+.DS_Store
+
