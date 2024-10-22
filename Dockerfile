@@ -1,33 +1,38 @@
-FROM python:3.11.9
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libjpeg-dev \
-    zlib1g-dev \
-    libgl1-mesa-glx \
-    && rm -rf /var/lib/apt/lists/* \
-
-# Set environment variables
+FROM python:3.11
+# Set environment variables to prevent Python from writing .pyc files and to ensure stdout/stderr are unbuffered
 ENV PYTHONUNBUFFERED=1
-ENV TFHUB_CACHE_DIR=/app/.tfhub_modules
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# Create a working directory
+# Set the TensorFlow Hub cache directory to store the preloaded model
+ENV TFHUB_CACHE_DIR=/app/tfhub_modules
+
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy only requirements first to leverage Docker cache
-COPY requirements.txt /app/
+# Install OS-level dependencies required by Pillow and other packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies and cache the TensorFlow Hub model
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Copy the requirements.txt file into the container
+COPY requirements.txt /app/requirements.txt
 
-# Copy the rest of the application code
-COPY . /app/
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5002 for the Flask app
+# Copy the entire application code into the container
+COPY . /app
+
+# Create the TensorFlow Hub modules directory and preload the model
+RUN mkdir -p /app/tfhub_modules 
+
+# Expose the port that the Flask app runs on
 EXPOSE 5002
 
-# Set the environment variable for Flask
-ENV FLASK_APP=app.py
-
-# Run the Flask app using Gunicorn for better performance
-CMD ["gunicorn", "--bind", "0.0.0.0:5002", "app:app"]
+# Start the application using Gunicorn with 4 worker processes
+CMD ["gunicorn", "-b", "0.0.0.0:5002", "app:app"]

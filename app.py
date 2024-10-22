@@ -60,6 +60,10 @@ def transfer_style(content_image, style_image):
 
     return stylized_image
 
+@app.route('/', methods=['GET'])
+def index():
+    return "Welcome to the Style Transfer API!"
+
 @app.route('/stylize', methods=['POST'])
 def stylize():
     """
