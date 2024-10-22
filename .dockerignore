@@ -1,7 +1,20 @@
-# .dockerignore file
-node_modules
-npm-debug.log
-uploads
-outputs
-.DS_Store
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.log.*
+*.log-*
+*.log_*
+*.log/*
 
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+
+.venv
+.DS_Store

@@ -1,24 +1,33 @@
-# Use an official Node.js runtime (Alpine version) as a parent image
-FROM node:20
+FROM python:3.11.9
 
-# Install the required packages for TensorFlow
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libjpeg-dev \
+    zlib1g-dev \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/* \
 
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV TFHUB_CACHE_DIR=/app/.tfhub_modules
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Create a working directory
+WORKDIR /app
 
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
+# Copy only requirements first to leverage Docker cache
+COPY requirements.txt /app/
 
-# Install dependencies
-RUN npm install
+# Install Python dependencies and cache the TensorFlow Hub model
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
-COPY . .
+COPY . /app/
 
-# Expose the port the app runs on
-EXPOSE 3000
+# Expose port 5002 for the Flask app
+EXPOSE 5002
 
-# Command to run the application
-CMD ["node", "server.js"]
+# Set the environment variable for Flask
+ENV FLASK_APP=app.py
 
+# Run the Flask app using Gunicorn for better performance
+CMD ["gunicorn", "--bind", "0.0.0.0:5002", "app:app"]
