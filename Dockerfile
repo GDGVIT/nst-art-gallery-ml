@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.11-slim
 # Set environment variables to prevent Python from writing .pyc files and to ensure stdout/stderr are unbuffered
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1

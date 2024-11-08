@@ -6,8 +6,10 @@ import tensorflow_hub as hub
 from PIL import Image
 import threading
 import os
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS
 
 # Update the model path to the Kaggle model path
 model_path = "https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2"
@@ -109,5 +111,4 @@ def stylize():
 
 
 if __name__ == "__main__":
-    # Run the app on port 5002 with threading enabled
     app.run(host="0.0.0.0", port=5002, threaded=True)
