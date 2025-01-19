@@ -1,6 +1,14 @@
-# Style Transfer Flask API Guide
-
-This guide provides detailed instructions on how to set up and run the Style Transfer Flask API both with and without Docker. It also includes information on the API endpoints, expected inputs, outputs, and example usage.
+<p align="center">
+<a href="https://dscvit.com">
+	<img width="400" src="https://user-images.githubusercontent.com/56252312/159312411-58410727-3933-4224-b43e-4e9b627838a3.png#gh-light-mode-only" alt="GDSC VIT"/>
+	<hr>
+<!-- 	<p align="center">
+		<img  src="https://github.com/dk-a-dev/collabify/blob/dev/src/lib/assets/logo.svg">
+	</p> -->
+</a>
+	<h2 align="center"> Nst Art Gallery- Style Transfer Model </h2>
+	<h4 align="center">Our project utilizes Neural Style Transfer (NST), powered by a pre-trained VGG19 network. NST combines the content of one image with the artistic style of another, using convolutional neural networks, Gram matrices, and loss functions to create unique, visually captivating images that blend structure and texture. This guide provides detailed instructions on setting up and running the Style Transfer Flask API with and without Docker. It also includes information on the API endpoints, expected i/o's and example usage <h4>
+</p>
 
 ## Table of Contents
 
@@ -309,3 +317,29 @@ else:
 This guide provides a comprehensive overview of setting up and running the Style Transfer Flask API, both with and without Docker. By following the instructions, you should be able to run the API locally, interact with it, and perform style transfer on images.
 
 Feel free to explore and modify the code to suit your needs. If you encounter any issues or have questions, refer to the troubleshooting section or consult additional resources.
+
+
+## Contributors
+
+<table>
+	<tr>
+		<td>
+		Sidhant Srivastav
+		<p align="center">
+			<img src = "https://avatars.githubusercontent.com/u/66166455?v=4" width="150" height="150">
+		</p>
+			<p align="center">
+				<a href = "https://github.com/sidhant-sriv">
+					<img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36" alt="GitHub"/>
+				</a>
+				<a href = "https://www.linkedin.com/in/sidhant-srivastava-41803620b/">
+					<img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36" alt="LinkedIn"/>
+				</a>
+			</p>
+		</td>
+</table>
+
+<p align="center">
+	Made with 💗 by <a href="https://dscvit.com">GDSC-VIT</a>
+</p>
+
