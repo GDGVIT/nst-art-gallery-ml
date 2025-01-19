@@ -32,7 +32,7 @@ This guide will walk you through setting up the API, both with and without Docke
 Here's how the project directory is organized:
 
 ```
-/your_project
+/nst-art-gallery-ml
 │
 ├── app.py             # Flask application code
 ├── Dockerfile         # Dockerfile for containerizing the app
@@ -49,15 +49,15 @@ Here's how the project directory is organized:
 Open your terminal and clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/your_project.git
+git clone https://github.com/GDGVIT/nst-art-gallery-ml.git
 ```
 
-Replace `yourusername` and `your_project` with the appropriate GitHub repository information.
+Replace `GDGVIT` and `nst-art-gallery-ml` with the appropriate GitHub repository information.
 
 Navigate to the project directory:
 
 ```bash
-cd your_project
+cd nst-art-gallery-ml
 ```
 
 ### 2. Set Up a Virtual Environment
